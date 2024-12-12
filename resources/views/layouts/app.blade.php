@@ -4,52 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Mon Application')</title>
-    <!-- Add links to your stylesheets, scripts, etc. here -->
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Mise à jour vers Bootstrap 5.3 pour un design plus moderne -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Reda Yahya</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('flights.index') }}">Liste des vols</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('flights.create') }}">Créer un vol</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('tickets.index') }}">Liste des billets</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('tickets.create') }}">Créer un billet</a>
-                </li>
-            </ul>
+    <!-- Navbar avec style amélioré -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Flight Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" href="{{ route('flights.index') }}">Flight List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" href="{{ route('flights.create') }}">Create Flight</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" href="{{ route('tickets.index') }}">Ticket List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" href="{{ route('tickets.create') }}">Create Ticket</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <div class="container flex-grow-1">
+    <!-- Container principal avec padding -->
+    <div class="container flex-grow-1 py-4">
         @yield('content')
     </div>
 
-    <!-- Include Bootstrap JS and Popper.js (required for some Bootstrap components) -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <!-- Footer Section -->
-    <footer class="footer mt-auto py-3 bg-dark">
-        <div class="container text-center">
-            <p class="text-white">@2024 Mon Application. All Rights Reserved.</p>
-            <p class="text-white">Made with ❤️ by Reda Yahya</p>
-            <p class="text-white">Contact us at <a href="mailto:redayahyapro@gmail.com" class="text-white">redayahyapro@gmail.com</a></p>
+    <!-- Footer amélioré -->
+    <footer class="footer mt-auto py-4 bg-dark">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-12">
+                    <h6 class="text-white mb-3">&copy; 2024 Flight Management</h6>
+                    <p class="text-white-50 mb-2">Made with <span class="text-danger">❤️</span> by Reda Yahya</p>
+                    <p class="text-white-50">Contact: <a href="mailto:reda.yahya@e-polytechnique.ma" class="text-white text-decoration-none" id="mail">reda.yahya@e-polytechnique.ma</a></p>
+                </div>
+                <div>
+                    <a href="https://www.linkedin.com/in/reda-yahya-920976253/" target="_blank" class="text-white me-3">
+                        <i class="fab fa-linkedin fa-2x" id="linkedin"></i>
+                    </a>
+                    <a href="https://github.com/Reda-Yh" target="_blank" class="text-white me-3 github-icon">
+                        <i class="fab fa-github fa-2x" id="github"></i>
+                    </a>
+                    <a href="https://discord.gg/tckCRRqUaa" target="_blank" class="text-white discord-icon">
+                        <i class="fab fa-discord fa-2x" id="discord"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <style>
+        #linkedin {
+            color: #0A66C2;;
+        }
+
+        #github {
+            color: #6e5494;
+        }
+
+        #discord {
+            color: #7289da;
+        }
+
+        #linkedin:hover,#github:hover,#discord:hover{
+            color: white;
+        }
+    </style>
+
+
+    <!-- Mise à jour des scripts vers Bootstrap 5.3 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 

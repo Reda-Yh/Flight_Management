@@ -2,44 +2,73 @@
 
 @extends('layouts.app')
 
-@section('title', 'Modifier un vol')
+@section('title', 'Edit Flight')
 
 @section('content')
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-white">
+                        <h4 class="mb-0">Edit Flight</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('flights.update', $flight->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
 
-    <div class="container">
-        <h1 class="mt-4">Modifier un vol</h1>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="origin" name="origin"
+                                            placeholder="Origin" value="{{ $flight->origin }}" required>
+                                        <label for="origin">Origin</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="destination" name="destination"
+                                            placeholder="Destination" value="{{ $flight->destination }}" required>
+                                        <label for="destination">Destination</label>
+                                    </div>
+                                </div>
+                            </div>
 
-        <form action="{{ route('flights.update', $flight) }}" method="POST">
-            @csrf
-            @method('PUT')
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="flight_number" name="flight_number"
+                                            placeholder="Flight Number" value="{{ $flight->flight_number }}" required>
+                                        <label for="flight_number">Flight Number</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="datetime-local" class="form-control" id="departure" name="departure"
+                                            value="{{ date('Y-m-d\TH:i', strtotime($flight->departure)) }}" required>
+                                        <label for="departure">Departure Date and Time</label>
+                                    </div>
+                                </div>
+                            </div>
 
-            <div class="form-group">
-                <label for="origin">Origine:</label>
-                <input type="text" class="form-control" name="origin" value="{{ $flight->origin }}" required>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="Name" value="{{ $flight->name }}" required>
+                                <label for="name">Name</label>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-dark btn-lg flex-grow-1">
+                                    <i class="fas fa-plane me-2"></i>Update Flight
+                                </button>
+                                <a href="{{ route('flights.index') }}" class="btn btn-outline-secondary btn-lg">
+                                    <i class="fas fa-times me-2"></i>Cancel
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="destination">Destination:</label>
-                <input type="text" class="form-control" name="destination" value="{{ $flight->destination }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="flight_number">Numéro de vol:</label>
-                <input type="text" class="form-control" name="flight_number" value="{{ $flight->flight_number }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="departure">Départ:</label>
-                <input type="datetime-local" class="form-control" name="departure" value="{{ $flight->departure instanceof DateTime ? $flight->departure->format('Y-m-d\TH:i') : $flight->departure }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="name">Nom:</label>
-                <input type="text" class="form-control" name="name" value="{{ $flight->name }}" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Mettre à jour le vol</button>
-        </form>
+        </div>
     </div>
-
 @endsection

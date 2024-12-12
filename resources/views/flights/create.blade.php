@@ -2,43 +2,64 @@
 
 @extends('layouts.app')
 
-@section('title', 'Créer un vol')
+@section('title', 'Create Flight')
 
 @section('content')
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-white">
+                        <h4 class="mb-0">Create a New Flight</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('flights.store') }}" method="POST">
+                            @csrf
 
-    <div class="container">
-        <h1 class="mt-4">Créer un vol</h1>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="origin" name="origin" placeholder="Origin" required>
+                                        <label for="origin">Origin</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="destination" name="destination" placeholder="Destination" required>
+                                        <label for="destination">Destination</label>
+                                    </div>
+                                </div>
+                            </div>
 
-        <form action="{{ route('flights.store') }}" method="POST">
-            @csrf
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="flight_number" name="flight_number" placeholder="Flight Number" required>
+                                        <label for="flight_number">Flight Number</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="datetime-local" class="form-control" id="departure" name="departure" required>
+                                        <label for="departure">Departure Date and Time</label>
+                                    </div>
+                                </div>
+                            </div>
 
-            <div class="form-group">
-                <label for="origin">Origine:</label>
-                <input type="text" class="form-control" name="origin" required>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                                <label for="name">Name</label>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-dark btn-lg">
+                                    <i class="fas fa-plane-departure me-2"></i>Create Flight
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="destination">Destination:</label>
-                <input type="text" class="form-control" name="destination" required>
-            </div>
-
-            <div class="form-group">
-                <label for="flight_number">Numéro de vol:</label>
-                <input type="text" class="form-control" name="flight_number" required>
-            </div>
-
-            <div class="form-group">
-                <label for="departure">Départ:</label>
-                <input type="datetime-local" class="form-control" name="departure" required>
-            </div>
-
-            <div class="form-group">
-                <label for="name">Nom:</label>
-                <input type="text" class="form-control" name="name" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Créer le vol</button>
-        </form>
+        </div>
     </div>
-
 @endsection
